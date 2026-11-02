@@ -1,0 +1,16 @@
+{
+  "source": "01-hook.mp3",
+  "measurement": {
+    "input_i": "-25.49",
+    "input_tp": "-1.39",
+    "input_lra": "3.20",
+    "input_thresh": "-35.75",
+    "output_i": "-16.61",
+    "output_tp": "-1.50",
+    "output_lra": "2.60",
+    "output_thresh": "-26.83",
+    "normalization_type": "dynamic",
+    "target_offset": "0.61"
+  },
+  "filter": "loudnorm=I=-16:TP=-1.5:LRA=7:linear=true:measured_I=-25.49:measured_TP=-1.39:measured_LRA=3.20:measured_thresh=-35.75:offset=0.61"
+}

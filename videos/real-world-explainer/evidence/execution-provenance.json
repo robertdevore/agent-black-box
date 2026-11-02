@@ -1,0 +1,28 @@
+{
+  "scenario": "deliberately prepared defect; real file IO and subprocess execution",
+  "runtime": "v26.12.1",
+  "runledgerId": "2026-11-02-codex-reject-blank-inventory-skus-and-normalize-valid-ids-001",
+  "events": 11,
+  "capturedCommands": [
+    {
+      "command": "node --test inventory.test.mjs",
+      "stdout": "\u2714 imports a valid inventory row (2.288712ms)\n\u2716 rejects a whitespace-only SKU (2.653982ms)\n\u2716 normalizes surrounding SKU whitespace (2.271607ms)\n\u2714 rejects negative quantities (0.523726ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 2\n\u2139 fail 2\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 151.790197\n\n\u2716 failing tests:\n\ntest at inventory.test.mjs:7:1\n\u2716 rejects a whitespace-only SKU (2.653982ms)\n  AssertionError [ERR_ASSERTION]: Missing expected exception.\n      at TestContext.<anonymous> (file:///private[demo-checkout]/inventory.test.mjs:8:10)\n      at Test.runInAsyncScope (node:async_hooks:226:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: /SKU is required/,\n    operator: 'throws',\n    diff: 'simple'\n  }\n\ntest at inventory.test.mjs:10:1\n\u2716 normalizes surrounding SKU whitespace (2.271607ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [\n      {\n        quantity: 8,\n  +     sku: ' COFFEE-01 '\n  -     sku: 'COFFEE-01'\n      }\n    ]\n  \n      at TestContext.<anonymous> (file:///private[demo-checkout]/inventory.test.mjs:11:10)\n      at Test.runInAsyncScope (node:async_hooks:226:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: [ { sku: ' COFFEE-01 ', quantity: 8 } ],\n    expected: [ { sku: 'COFFEE-01', quantity: 8 } ],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n",
+      "stderr": "",
+      "exitCode": 1
+    },
+    {
+      "command": "node --test inventory.test.mjs",
+      "stdout": "\u2714 imports a valid inventory row (2.247861ms)\n\u2714 rejects a whitespace-only SKU (0.59936ms)\n\u2714 normalizes surrounding SKU whitespace (0.240819ms)\n\u2714 rejects negative quantities (1.228775ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 4\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 152.375301\n",
+      "stderr": "",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check inventory.mjs",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0
+    }
+  ],
+  "traceSha256": "2734a2943c566ab8b65b1f9b0a78803e4ed3865085184730a5513ab2138b8a7d",
+  "privacy": "No private application files. Temporary checkout removed. Absolute temporary paths replaced in logs."
+}

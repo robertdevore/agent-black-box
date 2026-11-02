@@ -1,0 +1,12 @@
+{
+  "contract": 1,
+  "id": "run-importer",
+  "name": "Run Importer",
+  "version": "1.0.0",
+  "runtime": "cloudflare-worker",
+  "entry": "worker.mjs",
+  "dataVersion": 1,
+  "routes": ["/run-importer"],
+  "capabilities": [],
+  "configuration": {}
+}

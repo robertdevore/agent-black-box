@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "chapters": 10,
+  "voice": "Siren",
+  "model": "eleven_v4",
+  "outputs": [
+    {
+      "file": "Agent-Black-Box-Explainer.mp4",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "duration": 190.08,
+      "bytes": 15564280,
+      "fullDecode": "pass",
+      "sha256": "ab0d1e7a2cf71eb054e1460346ea7169d56a7559dc59a162bd0bf7243e362046"
+    },
+    {
+      "file": "Agent-Black-Box-Explainer-480p.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "duration": 190.08,
+      "bytes": 4050762,
+      "fullDecode": "pass",
+      "sha256": "6f437df591efda9b7a94010d7e3e7c59a515bf4fef3d59ff16879b40189386db"
+    }
+  ],
+  "listeningReview": "unavailable"
+}

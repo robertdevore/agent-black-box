@@ -1,0 +1,19 @@
+{
+  "kind": "real bounded execution",
+  "runId": "2026-11-02-codex-verify-a-kujo-arithmetic-program-001",
+  "runtime": "kujo 1.9.0",
+  "program": "answer := 6 * 7\nassert(answer == 42)\nprint(\"verified: 42\")\n",
+  "outputs": [
+    {
+      "command": "kujo check check.kujo",
+      "stdout": "check passed: check.kujo",
+      "exitCode": 0
+    },
+    {
+      "command": "kujo run check.kujo",
+      "stdout": "verified: 42",
+      "exitCode": 0
+    }
+  ],
+  "privacy": "Only repo_path replaced; task authored for this public demonstration."
+}

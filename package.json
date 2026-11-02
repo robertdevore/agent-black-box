@@ -1,0 +1,28 @@
+{
+  "name": "agent-black-box",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run build && node scripts/dev.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "build": "node scripts/build.mjs",
+    "compose:check": "node scripts/compose.mjs",
+    "verify": "npm test && npm run build && npm run test:e2e"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.64.1",
+    "esbuild": "0.25.12",
+    "miniflare": "5.20261102.0-beta",
+    "wrangler": "4.156.2"
+  },
+  "license": "MIT"
+}

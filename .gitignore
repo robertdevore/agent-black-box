@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.wrangler/
+.private/
+playwright-report/
+test-results/
+.env*
+.dev.vars*
+.loop-engineering/milestones/siren-video/iterations/*/diff.patch

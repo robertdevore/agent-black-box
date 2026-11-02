@@ -1,0 +1,16 @@
+{
+  "source": "08-contracts.mp3",
+  "measurement": {
+    "input_i": "-25.51",
+    "input_tp": "-4.05",
+    "input_lra": "4.50",
+    "input_thresh": "-36.08",
+    "output_i": "-17.95",
+    "output_tp": "-1.50",
+    "output_lra": "2.40",
+    "output_thresh": "-28.46",
+    "normalization_type": "dynamic",
+    "target_offset": "1.95"
+  },
+  "filter": "loudnorm=I=-16:TP=-1.5:LRA=7:linear=true:measured_I=-25.51:measured_TP=-4.05:measured_LRA=4.50:measured_thresh=-36.08:offset=1.95"
+}

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/loftwah/app-composer",
+  "commit": "5289956f8efba5daefa1de78e1680f5e1c65666a",
+  "files": [
+    "scripts/contracts.mjs",
+    "src/lib/device-support.mjs",
+    "LICENSE"
+  ],
+  "retrieved": "2026-11-02"
+}

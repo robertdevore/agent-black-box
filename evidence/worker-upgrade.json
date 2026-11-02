@@ -1,0 +1,14 @@
+{
+  "runtime": "Miniflare/workerd",
+  "result": "pass",
+  "before": "1.0.0",
+  "after": "1.0.1",
+  "serviceBindings": [
+    "studio → importer",
+    "studio → publisher",
+    "publisher → importer"
+  ],
+  "privateReceiptRetained": true,
+  "publicSnapshotRetained": true,
+  "cloudDeployment": false
+}

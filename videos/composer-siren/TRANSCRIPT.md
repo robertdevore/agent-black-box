@@ -1,0 +1,41 @@
+# Agent Black Box — narrated walkthrough
+
+## Follow the work
+
+The agent says the bug is fixed. Let's check. This is Agent Black Box. It turns an execution record into a replay, so you can follow the work instead of digging through a wall of logs. We'll track down a problem in an inventory importer, inspect the fix, and share the result.
+
+## Built around App Composer
+
+We built this around App Composer, by Loftwah. Its approach is useful here: give each app a clear job, then connect them. Our importer checks and stores the execution record. Replay Studio gives us this view. The publisher creates the report we can share. Each app keeps its own code and configuration.
+
+## Open the run
+
+First, drop in the execution record. The importer checks its format and removes common secret patterns before saving it. Now the run is on the graph. Click a step, drag the timeline, or press play. The details follow your selection.
+
+## Find the failure
+
+Here's where things went wrong. The importer accepted a product code made entirely of spaces. It also left spaces around valid codes. Two tests caught those problems. Open the failed step and you can read the command and its output. We're looking at what actually happened, right where it happened.
+
+## Read the patch
+
+The next attempt leads us to the patch. It's a small change: trim the product code before checking whether it's empty. The diff shows exactly what changed. That connection matters. We can move from the failed test to the edit that addresses it, without losing our place.
+
+## Check the result
+
+Run the tests again, and all four pass. The syntax check passes too. The failed attempt is still here, so you can see the whole story. Kujo Run Ledger keeps the run receipt, and Black Box gives us a way to explore the captured work.
+
+## Share the evidence
+
+When you're ready to show someone else, open Share report. Review what's included, approve it, and open the read-only copy. They get the same replay and evidence, without access to your private records. That makes it useful for a code review, a handoff, or explaining a fix to a teammate.
+
+## What Composer contributes
+
+Here's where App Composer does more than lend us a layout. Each app has a manifest. Composer's own validators check that the apps can fit together, and its promotion guard checks a proposed update. Worker service bindings carry requests between them. The importer owns private receipts; the publisher owns approved copies.
+
+## Update one app
+
+We also tested the boundary that matters: update Replay Studio on its own, then read the existing receipt and shared report. Both still work. This check runs the Workers with real service bindings and separate databases. Our local adapter applies Composer's contracts; registration in its hosted stack editor is a separate step.
+
+## See what your agent did
+
+That's the combination: App Composer keeps the apps independent, and Agent Black Box makes their execution evidence easy to follow. Start at the graph, pause at the failure, read the patch, and check the result. See what your AI agent actually did.

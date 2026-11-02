@@ -1,0 +1,12 @@
+{
+  "contract": 1,
+  "id": "receipt-publisher",
+  "name": "Receipt Publisher",
+  "version": "1.0.0",
+  "runtime": "cloudflare-worker",
+  "entry": "worker.mjs",
+  "dataVersion": 1,
+  "routes": ["/receipt-publisher"],
+  "capabilities": [],
+  "configuration": {}
+}

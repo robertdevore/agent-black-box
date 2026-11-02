@@ -1,0 +1,10 @@
+000.000 Follow the work
+017.520 Built around App Composer
+038.800 Open the run
+055.760 Find the failure
+075.920 Read the patch
+094.160 Check the result
+110.400 Share the evidence
+129.280 What Composer contributes
+150.560 Update one app
+172.560 See what your agent did

@@ -1,0 +1,35 @@
+objective: "Verify revised Siren v4 video and source publication readiness"
+max_iterations: 1
+max_no_progress: 1
+max_consecutive_failures: 1
+allowed_actions:
+  - read_files
+  - edit_files
+  - run_tests
+  - commit_local_changes
+blocked_actions:
+  - deploy
+  - destructive_cleanup
+  - production_config_change
+eval_gates:
+  - id: unit
+    command: "npm test"
+    required: true
+  - id: build
+    command: "npm run build"
+    required: true
+  - id: browser
+    command: "npm run test:e2e"
+    required: true
+  - id: whitespace
+    command: "git diff --check"
+    required: true
+  - id: media
+    command: "python3 videos/composer-siren/.tesseract-work/verify-media.py"
+    required: true
+commit:
+  enabled: false
+  strategy: small_meaningful
+  push: false
+memory:
+  enabled: false

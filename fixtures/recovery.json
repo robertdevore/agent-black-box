@@ -1,0 +1,160 @@
+{
+  "schema": "blackbox.run/v1",
+  "id": "fixture-recovery-001",
+  "title": "Fix a failing receipt validator",
+  "source": {
+    "provider": "agent-black-box-demo",
+    "receiptId": "fixture-recovery-001",
+    "classification": "synthetic",
+    "repository": "https://github.com/kujolang/runledger"
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "request",
+      "label": "Validate imported receipts",
+      "timestamp": "2026-11-02T12:00:00Z",
+      "status": "observed",
+      "sourceId": "fixture-1",
+      "evidence": {
+        "task": "Reject duplicate event IDs without changing recorded event order.",
+        "classification": "Synthetic demonstration. All commands, files and results in this scenario are simulated."
+      }
+    },
+    {
+      "id": "e2",
+      "type": "tool_call",
+      "label": "Inspect the validator",
+      "timestamp": "2026-11-02T12:00:03Z",
+      "status": "observed",
+      "sourceId": "fixture-2",
+      "evidence": {
+        "tool": "read_file",
+        "path": "src/validate.mjs"
+      },
+      "callId": "read-1"
+    },
+    {
+      "id": "e3",
+      "type": "tool_result",
+      "label": "Existing validation found",
+      "timestamp": "2026-11-02T12:00:06Z",
+      "status": "observed",
+      "sourceId": "fixture-3",
+      "evidence": {
+        "output": "Events have type checks, but IDs are not checked for uniqueness."
+      },
+      "callId": "read-1"
+    },
+    {
+      "id": "e4",
+      "type": "file",
+      "label": "Add duplicate detection",
+      "timestamp": "2026-11-02T12:00:09Z",
+      "status": "observed",
+      "sourceId": "fixture-4",
+      "evidence": {
+        "path": "src/validate.mjs",
+        "diff": "+ const seen = new Set();\n+ for (const event of events) {\n+   if (seen.has(event.id)) throw Error(\"Duplicate ID\");\n+ }"
+      }
+    },
+    {
+      "id": "e5",
+      "type": "test",
+      "label": "Duplicate-ID test fails",
+      "timestamp": "2026-11-02T12:00:12Z",
+      "status": "fail",
+      "sourceId": "fixture-5",
+      "evidence": {
+        "command": "node --test tests/validate.test.mjs",
+        "output": "FAIL: Missing expected exception. Duplicate ID accepted.\nExpected: throws\nActual: no exception",
+        "exitCode": 1
+      }
+    },
+    {
+      "id": "e6",
+      "type": "tool_call",
+      "label": "Inspect failing assertion",
+      "timestamp": "2026-11-02T12:00:15Z",
+      "status": "observed",
+      "sourceId": "fixture-6",
+      "evidence": {
+        "tool": "read_file",
+        "path": "tests/validate.test.mjs"
+      },
+      "callId": "read-2"
+    },
+    {
+      "id": "e7",
+      "type": "tool_result",
+      "label": "Missing set insertion",
+      "timestamp": "2026-11-02T12:00:18Z",
+      "status": "observed",
+      "sourceId": "fixture-7",
+      "evidence": {
+        "output": "The loop checks seen.has(event.id) but never adds event.id to the set."
+      },
+      "callId": "read-2"
+    },
+    {
+      "id": "e8",
+      "type": "retry",
+      "label": "Correct the validator",
+      "timestamp": "2026-11-02T12:00:21Z",
+      "status": "observed",
+      "sourceId": "fixture-8",
+      "evidence": {
+        "action": "Retry after the failed duplicate-ID test."
+      },
+      "retryOf": "e5"
+    },
+    {
+      "id": "e9",
+      "type": "file",
+      "label": "Track each observed ID",
+      "timestamp": "2026-11-02T12:00:24Z",
+      "status": "observed",
+      "sourceId": "fixture-9",
+      "evidence": {
+        "path": "src/validate.mjs",
+        "diff": "  if (seen.has(event.id)) throw Error(\"Duplicate ID\");\n+ seen.add(event.id);"
+      }
+    },
+    {
+      "id": "e10",
+      "type": "test",
+      "label": "Duplicate-ID test passes",
+      "timestamp": "2026-11-02T12:00:27Z",
+      "status": "pass",
+      "sourceId": "fixture-10",
+      "evidence": {
+        "command": "node --test tests/validate.test.mjs",
+        "output": "PASS rejects duplicate event IDs\nPASS preserves original order\n2 tests passed, 0 failed",
+        "exitCode": 0
+      }
+    },
+    {
+      "id": "e11",
+      "type": "recovery",
+      "label": "Regression resolved",
+      "timestamp": "2026-11-02T12:00:30Z",
+      "status": "pass",
+      "sourceId": "fixture-11",
+      "evidence": {
+        "evidence": "The repeated test now rejects duplicates and preserves event order."
+      }
+    },
+    {
+      "id": "e12",
+      "type": "completion",
+      "label": "Verified and ready to inspect",
+      "timestamp": "2026-11-02T12:00:33Z",
+      "status": "pass",
+      "sourceId": "fixture-12",
+      "evidence": {
+        "summary": "Synthetic scenario complete. One failed test, one explicit retry, passing regression checks.",
+        "limitation": "This is a labeled fixture, not a recorded production agent execution."
+      }
+    }
+  ]
+}

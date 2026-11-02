@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>App Composer × Agent Black Box — source walkthrough</title><style>
+*{box-sizing:border-box}body{margin:0;background:#0b0d12;color:#eceaf7;font:17px Inter,system-ui,sans-serif}header{display:flex;justify-content:space-between;border-bottom:1px solid #2b2e3b;padding:24px 42px;font-size:13px;letter-spacing:2px}header span{color:#aaa7be}main{padding:35px 42px}section{display:none}section:target{display:block}body:not(:has(section:target)) #overview{display:block}h1{font-size:45px;letter-spacing:-2px;margin:8px 0 15px}h2{font-size:25px}p{color:#b5b9c8;line-height:1.6;max-width:1000px}.eyebrow{font:12px monospace;color:#c8bfff;letter-spacing:2px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:42px}.card{border:1px solid #424052;background:#161821;border-radius:16px;padding:26px;height:245px}.num{color:#b6a8ff;font:13px monospace}.card p{font-size:16px}.tag{font:12px monospace;color:#91d7b8}.flow{margin-top:30px;background:#211f30;padding:23px;border-radius:12px;font:17px monospace;color:#d1c6ff;display:flex;justify-content:space-around}.columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}pre{background:#12151d;border:1px solid #303443;border-radius:12px;padding:18px;font:14px/1.45 monospace;white-space:pre-wrap;max-height:355px;overflow:auto;color:#c9d5e1}.proof{font-size:16px;max-height:380px}.credit{margin-top:24px;color:#a5a5bb;font:13px monospace}nav a{color:#cfc5ff;margin-right:24px;font-size:14px;text-decoration:none}nav{margin-top:28px}.pass{color:#8bdfb6}.source{color:#8f95ac;font:12px monospace}
+</style><header><b>APP COMPOSER × AGENT BLACK BOX</b><span>SOURCE WALKTHROUGH</span></header><main>
+<section id="overview"><div class="eyebrow">INDEPENDENT APPS · CONNECTED EVIDENCE</div><h1>Three apps. One useful replay.</h1><p>Built around App Composer’s manifest and promotion contracts, by Loftwah.</p><div class="cards"><article class="card"><span class="num">01 / RUN IMPORTER</span><h2>Check and store</h2><p>Validate the record.<br>Redact common secrets.<br>Keep private receipts.</p><span class="tag">OWN SOURCE · PRIVATE D1</span></article><article class="card"><span class="num">02 / REPLAY STUDIO</span><h2>Follow the work</h2><p>Explore the graph.<br>Scrub the timeline.<br>Inspect the evidence.</p><span class="tag">OWN SOURCE · OWN RELEASE</span></article><article class="card"><span class="num">03 / RECEIPT PUBLISHER</span><h2>Share with approval</h2><p>Review the snapshot.<br>Publish a read-only copy.<br>Keep public data separate.</p><span class="tag">OWN SOURCE · PUBLIC D1</span></article></div><div class="flow"><span>JSON receipt</span><span>→</span><span>Worker service bindings</span><span>→</span><span>Approved report</span></div><p class="credit">App Composer by Loftwah · composer.loftwah.com · github.com/loftwah/app-composer</p></section>
+<section id="contracts"><div class="eyebrow">ACTUAL REPOSITORY FILES</div><h1>Contracts make the boundaries explicit.</h1><div class="columns"><div><h2>App-owned manifest</h2><pre>{
+  &quot;contract&quot;: 1,
+  &quot;id&quot;: &quot;run-importer&quot;,
+  &quot;name&quot;: &quot;Run Importer&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;runtime&quot;: &quot;cloudflare-worker&quot;,
+  &quot;entry&quot;: &quot;worker.mjs&quot;,
+  &quot;dataVersion&quot;: 1,
+  &quot;routes&quot;: [&quot;/run-importer&quot;],
+  &quot;capabilities&quot;: [],
+  &quot;configuration&quot;: {}
+}
+</pre><div class="source">apps/run-importer/app.manifest.json</div></div><div><h2>Fixed service bindings</h2><pre>{
+  &quot;name&quot;: &quot;blackbox-replay-studio&quot;,
+  &quot;main&quot;: &quot;worker.mjs&quot;,
+  &quot;compatibility_date&quot;: &quot;2026-11-02&quot;,
+  &quot;workers_dev&quot;: true,
+  &quot;services&quot;: [
+    {
+      &quot;binding&quot;: &quot;IMPORTER&quot;,
+      &quot;service&quot;: &quot;blackbox-run-importer&quot;,
+    },
+    {
+      &quot;binding&quot;: &quot;PUBLISHER&quot;,
+      &quot;service&quot;: &quot;blackbox-receipt-publisher&quot;,
+    },
+  ],
+  &quot;assets&quot;: {
+    &quot;directory&quot;: &quot;../../dist/replay-studio/public&quot;,
+    &quot;binding&quot;: &quot;ASSETS&quot;,
+    &quot;run_worker_first&quot;: true,
+  },
+}
+</pre><div class="source">apps/replay-studio/wrangler.jsonc</div></div></div><p class="pass">Composer upstream validators accepted run-importer, replay-studio, receipt-publisher</p><div class="source">Output from npm run compose:check · upstream validateComposition + local adapter</div></section>
+<section id="verified"><div class="eyebrow">EXECUTED VERIFICATION · NODE + WORKERD</div><h1>Update Studio. Keep the receipts.</h1><p>The integration test replaces only Studio executable bytes, then reads the existing private receipt and public snapshot.</p><pre class="proof">✔ valid import retains order, timestamps, provenance and retry relationships (5.811945ms)
+✔ invalid and oversized JSON fail before normalization (2.597173ms)
+✔ schema version, unknown fields and duplicate event IDs are rejected (0.653582ms)
+✔ missing timestamp represented as null; absent timestamp rejected; backwards order preserved (1.988107ms)
+✔ incomplete tool results disclose gaps; orphan results and invalid retries rejected (0.637737ms)
+✔ redacts structured keys and known secret patterns without interpreting markup (0.218961ms)
+✔ genuine RunLedger receipt imports without invented outputs or file timestamps (6.707181ms)
+✔ playback clamps seek, steps, restarts and stops deterministically at the end (0.402602ms)
+✔ invalid calendar dates and structural identifiers changed by redaction are rejected (0.797865ms)
+✔ import → normalize → inspect failure → approve → public snapshot; private store never public (48.565153ms)
+✔ owner auth, cross-origin writes, content limits and stale approval rejected (4.131053ms)
+✔ revocation removes public access and requires owner (3.108249ms)
+✔ Composer actual validators reject collisions, permission expansion, stale promotion (1.951815ms)
+✔ independent studio 1.0.1 promotion preserves importer receipts and publisher snapshots (4.773811ms)
+✔ hosted studio responses carry CSP and anti-framing protection (1.042741ms)
+✔ asset-only updates change the Studio release identity (249.472073ms)
+✔ real Worker service bindings and separate D1 survive independent studio code update (1067.966759ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1610.043866</pre><div class="source">Actual npm test output · separate D1 databases · real Worker service bindings</div><p class="credit">Local Composer contract adapter. Native hosted-editor registration is a separate step.</p></section>
+<nav><a href="#overview">01 Architecture</a><a href="#contracts">02 Composer contracts</a><a href="#verified">03 Update verification</a></nav></main></html>

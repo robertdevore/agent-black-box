@@ -1,0 +1,30 @@
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ valid import retains order, timestamps, provenance and retry relationships (11.960186ms)
+✔ invalid and oversized JSON fail before normalization (36.617156ms)
+✔ schema version, unknown fields and duplicate event IDs are rejected (6.123402ms)
+✔ missing timestamp represented as null; absent timestamp rejected; backwards order preserved (20.685614ms)
+✔ incomplete tool results disclose gaps; orphan results and invalid retries rejected (1.299388ms)
+✔ redacts structured keys and known secret patterns without interpreting markup (0.55089ms)
+✔ genuine RunLedger receipt imports without invented outputs or file timestamps (34.312952ms)
+✔ playback clamps seek, steps, restarts and stops deterministically at the end (2.21374ms)
+✔ invalid calendar dates and structural identifiers changed by redaction are rejected (2.953626ms)
+✔ import → normalize → inspect failure → approve → public snapshot; private store never public (255.748223ms)
+✔ owner auth, cross-origin writes, content limits and stale approval rejected (32.234226ms)
+✔ revocation removes public access and requires owner (47.480199ms)
+✔ Composer actual validators reject collisions, permission expansion, stale promotion (5.812713ms)
+✔ independent studio 1.0.1 promotion preserves importer receipts and publisher snapshots (27.78111ms)
+✔ hosted studio responses carry CSP and anti-framing protection (1.425723ms)
+✔ asset-only updates change the Studio release identity (423.399365ms)
+✔ real Worker service bindings and separate D1 survive independent studio code update (2960.163136ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4687.143609

@@ -1,0 +1,62 @@
+{
+  "schema": "runledger/1",
+  "receipt": {
+    "changed_files": [
+      "check.kujo"
+    ],
+    "commands": [
+      {
+        "at": "2026-11-02T17:01:33Z",
+        "text": "kujo check check.kujo"
+      },
+      {
+        "at": "2026-11-02T17:01:33Z",
+        "text": "kujo run check.kujo"
+      }
+    ],
+    "correlation": {
+      "dispatch_run_id": null,
+      "eval_run_id": null,
+      "relay_run_id": null,
+      "watchdog_run_id": null,
+      "watchdog_trace_id": null
+    },
+    "cost": {
+      "cache_cost": null,
+      "currency": "USD",
+      "input_cost": null,
+      "output_cost": null,
+      "total_cost": null
+    },
+    "created_at": "2026-11-02T17:01:32Z",
+    "end_commit": "6d8bd58b8a2f737b655cdb36aac7735d23f90c10",
+    "followups": [],
+    "git_dirty_end": true,
+    "git_dirty_start": false,
+    "id": "2026-11-02-codex-verify-a-kujo-arithmetic-program-001",
+    "model": "codex",
+    "notes": [],
+    "prompt_file": "task.md",
+    "provider": "openai",
+    "repo_path": "[isolated temporary repository]",
+    "start_commit": "6d8bd58b8a2f737b655cdb36aac7735d23f90c10",
+    "status": "pass",
+    "task_name": "Verify a Kujo arithmetic program",
+    "tests": [
+      {
+        "at": "2026-11-02T17:01:33Z",
+        "details": "verified: 42",
+        "name": "Arithmetic output matches 42",
+        "status": "pass"
+      }
+    ],
+    "updated_at": "2026-11-02T17:01:32Z",
+    "usage": {
+      "cache_read_tokens": null,
+      "cache_write_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    "verdict": "Created check.kujo; syntax check and runtime assertion passed."
+  }
+}

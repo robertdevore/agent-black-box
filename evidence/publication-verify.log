@@ -1,0 +1,68 @@
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 verify
+> npm test && npm run build && npm run test:e2e
+
+npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ valid import retains order, timestamps, provenance and retry relationships (10.136136ms)
+✔ invalid and oversized JSON fail before normalization (3.706963ms)
+✔ schema version, unknown fields and duplicate event IDs are rejected (0.787112ms)
+✔ missing timestamp represented as null; absent timestamp rejected; backwards order preserved (2.73647ms)
+✔ incomplete tool results disclose gaps; orphan results and invalid retries rejected (0.993352ms)
+✔ redacts structured keys and known secret patterns without interpreting markup (0.342946ms)
+✔ genuine RunLedger receipt imports without invented outputs or file timestamps (11.136438ms)
+✔ playback clamps seek, steps, restarts and stops deterministically at the end (0.426528ms)
+✔ invalid calendar dates and structural identifiers changed by redaction are rejected (0.866235ms)
+✔ import → normalize → inspect failure → approve → public snapshot; private store never public (65.685265ms)
+✔ owner auth, cross-origin writes, content limits and stale approval rejected (6.928827ms)
+✔ revocation removes public access and requires owner (4.04505ms)
+✔ Composer actual validators reject collisions, permission expansion, stale promotion (2.367956ms)
+✔ independent studio 1.0.1 promotion preserves importer receipts and publisher snapshots (5.552323ms)
+✔ hosted studio responses carry CSP and anti-framing protection (2.265858ms)
+✔ asset-only updates change the Studio release identity (236.385275ms)
+✔ real Worker service bindings and separate D1 survive independent studio code update (1432.45556ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2090.77958
+npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 build
+> node scripts/build.mjs
+
+Built all three independent Workers
+npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 test:e2e
+> playwright test
+
+[WebServer] npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] (node:85561) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:85573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/replay.spec.mjs:5:1 › full import, failure inspection, recovery replay and approved public report (4.1s)
+  ✓  2 tests/browser/replay.spec.mjs:65:1 › keyboard, slider, playback and reduced-motion preferences (600ms)
+  ✓  3 tests/browser/replay.spec.mjs:90:1 › desktop and phone accessibility, layout and screenshots (3.0s)
+  ✓  4 tests/browser/replay.spec.mjs:120:1 › recorded example and safe text rendering (666ms)
+  ✓  5 tests/browser/replay.spec.mjs:138:1 › graph row turns connect consecutive events and large traces stay bounded (922ms)
+  ✓  6 tests/browser/replay.spec.mjs:176:1 › recorded inventory run keeps event inspection usable (1.0s)
+
+  6 passed (13.6s)

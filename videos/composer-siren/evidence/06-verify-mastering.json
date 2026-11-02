@@ -1,0 +1,16 @@
+{
+  "source": "06-verify.mp3",
+  "measurement": {
+    "input_i": "-25.31",
+    "input_tp": "-3.93",
+    "input_lra": "3.50",
+    "input_thresh": "-35.72",
+    "output_i": "-17.47",
+    "output_tp": "-1.50",
+    "output_lra": "2.20",
+    "output_thresh": "-27.90",
+    "normalization_type": "dynamic",
+    "target_offset": "1.47"
+  },
+  "filter": "loudnorm=I=-16:TP=-1.5:LRA=7:linear=true:measured_I=-25.31:measured_TP=-3.93:measured_LRA=3.50:measured_thresh=-35.72:offset=1.47"
+}

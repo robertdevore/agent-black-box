@@ -1,0 +1,56 @@
+{
+  "files": [
+    {
+      "path": "agent/MASTER.md",
+      "content": "# Agent Black Box\nSee what your AI agent actually did. Build an MIT open-source, dark-first interactive execution replay, opening immediately to a useful failure/recovery graph.\n\n## Research and architecture\nThree independently versioned Cloudflare Worker applications in apps/run-importer, apps/replay-studio, apps/receipt-publisher, each with manifest, config, build and source. HTTP JSON contracts over Worker service bindings; importer owns private receipts, publisher owns explicitly approved immutable sanitized snapshots, studio owns UI. Local development uses the same fetch handlers and durable app-separated SQLite storage. No payments, accounts provisioning or arbitrary commands.\nComposer source https://github.com/loftwah/app-composer: reuse pinned upstream validateManifest, validateComposition, guardPromotion (vendor/composer). Current native stack app allowlist and compose CLI support reviewed built-ins only; implement a small documented local mount/promotion adapter, never claim native registration or cloud deployment. Cloudflare deployment requires explicit authorization and configured destinations. Source ownership through separate directories/release packages, not fabricated remote repos.\nRunLedger ab0ec5d: src/record.kujo plus CLI command/test entries. No schema_version upstream; explicit runledger/1 adapter envelope. Commands manually recorded, no results assumed. changed_files untimed, tests manual. Other Kujo interfaces researched, not all implemented. Canonical blackbox.run/v1 has ordered typed events, nullable timestamps, source IDs, explicit retry relationships, evidence and gaps. Strict validation, 1 MiB and 1000 events maximum. No hidden reasoning.\n\n## Milestones\n1. Contract and importer: validate, normalize, redact secrets, preserve input order and source provenance, reject duplicates/invalid versions/retry refs, surface missing results/timestamps.\n2. Studio: accessible responsive dark graph/timeline/playback and evidence inspector, no raw JSON wall, reduced motion, bounded rendering, keyboard.\n3. Publisher: explicit authenticated approval with reviewed content digest, private/public separated, safe public replay URLs and revocation, no auto-publication.\n4. Composer integration and genuine execution: manifests and promotion checks; isolated real task recorded with RunLedger; explicit synthetic recovery fixture; upgrade one app without losing receipts.\n5. Automated unit/integration/browser tests including import to public report, mobile/keyboard, actual screenshots; independent review and fixes.\n6. README, architecture/schema/security/deployment/source research, 40-second recording script, technical article/social/thread/maintainer feedback, MIT/attribution; small commits; push only to authorized existing remote; Strata consolidate.\n\n## Security and tests\nImported text rendered as text, no HTML/Markdown interpretation, commands never executed, URLs never fetched, HTTPS links safely constrained. Server-owned private auth, same-origin writes, no browser-generated authority. Redaction heuristic with explicit residual-risk disclosure. Resource limits before JSON parse, depth and string bounds. Published records exclude private storage references. Tokens/cost/duration unknown unless evidence supports them. Test malformed/oversized inputs, version/order/duplicates/null timestamps, incomplete tools, retries/provenance/redaction, denied publication, graph/timeline/playback, independent upgrade, Composer upstream validators, responsive and accessibility. npm test, npm run test:e2e, npm run build are gates. Use actual Loop harness .loop-engineering configuration proven in current source. Record gates and blockers without claiming unexecuted checks.\n"
+    },
+    {
+      "path": "agent/TODO.md",
+      "content": "# Milestones\n- [ ] phases/00-contracts-importer.md\n- [ ] phases/01-replay-studio.md\n- [ ] phases/02-receipt-publisher.md\n- [ ] phases/03-composer-evidence.md\n- [ ] phases/04-verification.md\n- [ ] phases/05-launch-handoff.md\n"
+    },
+    {
+      "path": "agent/HANDOFF.md",
+      "content": "# Handoff\nFollow MASTER.md; store executed gate evidence in .loop-engineering. Cloud publication and remote repository creation require authorization.\n\n## Current Status\nDiscovery complete; implementation pending.\n## Completed Phases\nNone.\n## Known Issues\nProvider key unavailable; offline manifest seam used. No remote or public deployment authorized.\n\n## Next Agent Notes\nRead MASTER.md and execute phased gates.\n"
+    },
+    {
+      "path": "agent/DECISIONS.md",
+      "content": "# Decisions\nUse app-owned storage and versioned HTTP contracts. Reuse Composer validators unchanged. Offline PackWrite manifest authored by this agent; no provider generation.\n\n## Confirmed\nThree app-owned Worker boundaries.\n## Open\nPublic destination and remote ownership require user selection.\n\n## Log\n2026-11-02: inspected current upstream sources before implementation.\n"
+    },
+    {
+      "path": "agent/REVIEW_CHECKLIST.md",
+      "content": "# Review\n- [ ] Validate untrusted imports and authorization\n- [ ] Verify playback and genuine evidence\n- [ ] Check Composer contracts, upgrade persistence and mobile UI\n\n## Security\n- [ ] Check publication auth and redaction\n## Data\n- [ ] Unknown metrics stay unknown\n## Operations\n- [ ] Verify documented commands\n"
+    },
+    {
+      "path": "agent/DEEPSEEK_START.md",
+      "content": "# Implementation handoff\nAct autonomously within local repository scope. Read MASTER.md and execute TODO.md through Loop; continue automatically after successful gates.\n"
+    },
+    {
+      "path": "agent/CODEX_REVIEW_PROMPT.md",
+      "content": "# Independent review\nRead MASTER.md. Score correctness, security, accessibility, evidence integrity and visual quality. Produce a repair checklist and fix substantive issues before final verification.\n"
+    },
+    {
+      "path": "agent/phases/00-contracts-importer.md",
+      "content": "# Phase 0: contracts-importer\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    },
+    {
+      "path": "agent/phases/01-replay-studio.md",
+      "content": "# Phase 1: replay-studio\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    },
+    {
+      "path": "agent/phases/02-receipt-publisher.md",
+      "content": "# Phase 2: receipt-publisher\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    },
+    {
+      "path": "agent/phases/03-composer-evidence.md",
+      "content": "# Phase 3: composer-evidence\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    },
+    {
+      "path": "agent/phases/04-verification.md",
+      "content": "# Phase 4: verification\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    },
+    {
+      "path": "agent/phases/05-launch-handoff.md",
+      "content": "# Phase 5: launch-handoff\n\nImplement the corresponding MASTER.md milestone.\n\n## Acceptance criteria\n- [ ] Verify behavior with executable tests and saved evidence.\n- [ ] Record limitations and exact next action.\n\n## Suggested checks\nRun applicable npm test, npm run test:e2e and npm run build through the Loop harness.\n\n## Goal\nComplete named milestone in MASTER.md.\n## Scope\nOnly this repository.\n## Out of scope\nPublic deployment, paid services, unrelated changes.\n## Read before starting\nMASTER.md, MEGA_PROMPT.md and current source.\n## Implementation notes\nUse versioned interfaces and explicit evidence.\n## Handoff requirements\nRecord tests, artifacts and blockers.\n"
+    }
+  ]
+}

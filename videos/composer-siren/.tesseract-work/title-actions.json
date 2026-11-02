@@ -1,0 +1,541 @@
+[
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 100,
+    "name": "Follow the work",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 0,
+      "duration": 17520
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "01  /  Follow the work",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 101,
+    "name": "Built around App Composer",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 17520,
+      "duration": 21280
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "02  /  Built around App Composer",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 102,
+    "name": "Open the run",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 38800,
+      "duration": 16960
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "03  /  Open the run",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 103,
+    "name": "Find the failure",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 55760,
+      "duration": 20160
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "04  /  Find the failure",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 104,
+    "name": "Read the patch",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 75920,
+      "duration": 18240
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "05  /  Read the patch",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 105,
+    "name": "Check the result",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 94160,
+      "duration": 16240
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "06  /  Check the result",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 106,
+    "name": "Share the evidence",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 110400,
+      "duration": 18880
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "07  /  Share the evidence",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 107,
+    "name": "What Composer contributes",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 129280,
+      "duration": 21280
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "08  /  What Composer contributes",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 108,
+    "name": "Update one app",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 150560,
+      "duration": 22000
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "09  /  Update one app",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 109,
+    "name": "See what your agent did",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 172560,
+      "duration": 17520
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        66,
+        1024
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "10  /  See what your agent did",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 25,
+      "fillColor": [
+        0.85,
+        0.83,
+        1,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        950,
+        48
+      ]
+    }
+  },
+  {
+    "type": "createFxTextLayer",
+    "compositionId": "main",
+    "layerId": 150,
+    "name": "Recording disclosure",
+    "insertIndex": 0,
+    "activeRange": {
+      "start": 0,
+      "duration": 190080
+    },
+    "transform": {
+      "anchorPoint": [
+        0,
+        0
+      ],
+      "position": [
+        1170,
+        1028
+      ],
+      "scale": [
+        100,
+        100
+      ],
+      "rotation": 0,
+      "opacity": 100
+    },
+    "sourceText": {
+      "text": "AGENT BLACK BOX \u00d7 APP COMPOSER",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 19,
+      "fillColor": [
+        0.68,
+        0.72,
+        0.78,
+        1
+      ],
+      "justification": "left",
+      "boxText": true,
+      "boxPosition": [
+        0,
+        0
+      ],
+      "boxSize": [
+        700,
+        42
+      ]
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "editableProject": "Native Tesseract edit retained; rendered with verified FFmpeg workflow",
+  "nativePreviews": "Reference previews inspected",
+  "finalRenderer": "FFmpeg 8.0.1 explicit fallback",
+  "reason": "Native export yielded only 0.533 seconds of video after approximately 129 seconds; short video-only reproduction also slow. Root cause unverified.",
+  "source": "actual Playwright browser recording",
+  "durationSeconds": 190.08,
+  "fps": 30,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "captions": "ElevenLabs Siren / eleven_v4 character alignment"
+}

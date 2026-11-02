@@ -1,0 +1,16 @@
+{
+  "source": "02-composer.mp3",
+  "measurement": {
+    "input_i": "-25.28",
+    "input_tp": "-3.10",
+    "input_lra": "3.40",
+    "input_thresh": "-35.78",
+    "output_i": "-17.59",
+    "output_tp": "-1.50",
+    "output_lra": "1.80",
+    "output_thresh": "-28.06",
+    "normalization_type": "dynamic",
+    "target_offset": "1.59"
+  },
+  "filter": "loudnorm=I=-16:TP=-1.5:LRA=7:linear=true:measured_I=-25.28:measured_TP=-3.10:measured_LRA=3.40:measured_thresh=-35.78:offset=1.59"
+}

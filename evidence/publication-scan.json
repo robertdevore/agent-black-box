@@ -1,0 +1,6 @@
+{
+  "filesChecked": 200,
+  "credentialPatternMatches": 0,
+  "internalMemoryIdMatches": 0,
+  "note": "Pattern checks supplement the explicit file exclusions; they are not proof against every possible secret."
+}

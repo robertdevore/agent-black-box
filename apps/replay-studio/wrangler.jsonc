@@ -1,0 +1,21 @@
+{
+  "name": "blackbox-replay-studio",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-11-02",
+  "workers_dev": true,
+  "services": [
+    {
+      "binding": "IMPORTER",
+      "service": "blackbox-run-importer",
+    },
+    {
+      "binding": "PUBLISHER",
+      "service": "blackbox-receipt-publisher",
+    },
+  ],
+  "assets": {
+    "directory": "../../dist/replay-studio/public",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+  },
+}

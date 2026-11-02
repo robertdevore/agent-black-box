@@ -1,0 +1,20 @@
+{
+  "name": "blackbox-receipt-publisher",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-11-02",
+  "workers_dev": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "blackbox-receipt-publisher",
+      "database_id": "SET_AFTER_AUTHORIZED_PROVISIONING",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "services": [
+    {
+      "binding": "IMPORTER",
+      "service": "blackbox-run-importer",
+    },
+  ],
+}

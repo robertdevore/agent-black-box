@@ -1,0 +1,12 @@
+{
+  "name": "@agent-black-box/replay-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ../../scripts/build.mjs replay-studio",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+{
+  "contract": 1,
+  "id": "replay-studio",
+  "name": "Replay Studio",
+  "version": "1.0.0",
+  "runtime": "cloudflare-worker",
+  "entry": "worker.mjs",
+  "dataVersion": 1,
+  "routes": ["/replay-studio"],
+  "capabilities": [],
+  "configuration": {}
+}

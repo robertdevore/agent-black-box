@@ -1,0 +1,4 @@
+.tesseract-work/capture/
+.tesseract-work/fallback-parts/
+.tesseract-work/editable.json
+.tesseract-work/*.schema.json

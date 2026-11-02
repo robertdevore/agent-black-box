@@ -1,0 +1,72 @@
+{
+  "schema": "runledger/1",
+  "receipt": {
+    "changed_files": [
+      "inventory.mjs"
+    ],
+    "commands": [
+      {
+        "at": "2026-11-02T17:36:53Z",
+        "text": "node --test inventory.test.mjs"
+      },
+      {
+        "at": "2026-11-02T17:36:54Z",
+        "text": "node --test inventory.test.mjs"
+      },
+      {
+        "at": "2026-11-02T17:36:54Z",
+        "text": "node --check inventory.mjs"
+      }
+    ],
+    "correlation": {
+      "dispatch_run_id": null,
+      "eval_run_id": null,
+      "relay_run_id": null,
+      "watchdog_run_id": null,
+      "watchdog_trace_id": null
+    },
+    "cost": {
+      "cache_cost": null,
+      "currency": "USD",
+      "input_cost": null,
+      "output_cost": null,
+      "total_cost": null
+    },
+    "created_at": "2026-11-02T17:36:53Z",
+    "end_commit": "523065b73de5e084cbde8ae24bb69bc6fe621215",
+    "followups": [],
+    "git_dirty_end": true,
+    "git_dirty_start": false,
+    "id": "2026-11-02-codex-reject-blank-inventory-skus-and-normalize-valid-ids-001",
+    "model": "codex",
+    "notes": [],
+    "prompt_file": null,
+    "provider": "openai",
+    "repo_path": "[isolated prepared demo checkout]",
+    "start_commit": "523065b73de5e084cbde8ae24bb69bc6fe621215",
+    "status": "pass",
+    "task_name": "Reject blank inventory SKUs and normalize valid IDs",
+    "tests": [
+      {
+        "at": "2026-11-02T17:36:54Z",
+        "details": "2 passed, 2 failed; blank and padded SKUs not normalized.",
+        "name": "Inventory regression before correction",
+        "status": "fail"
+      },
+      {
+        "at": "2026-11-02T17:36:54Z",
+        "details": "4 tests passed, 0 failed; whitespace normalized, quantity validation preserved.",
+        "name": "Inventory regression after correction",
+        "status": "pass"
+      }
+    ],
+    "updated_at": "2026-11-02T17:36:53Z",
+    "usage": {
+      "cache_read_tokens": null,
+      "cache_write_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    "verdict": "Trim SKUs before validation; all 4 tests and syntax check pass. Prepared teaching scenario, actual command results."
+  }
+}

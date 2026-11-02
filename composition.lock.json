@@ -1,0 +1,59 @@
+{
+  "id": "9cc3d1759796ae86daf7e87eb43efbb44c647ade8e1f0464bae16dd720341ef4",
+  "apps": [
+    {
+      "id": "run-importer",
+      "manifest": {
+        "contract": 1,
+        "id": "run-importer",
+        "name": "Run Importer",
+        "version": "1.0.0",
+        "runtime": "cloudflare-worker",
+        "entry": "worker.mjs",
+        "dataVersion": 1,
+        "routes": [
+          "/run-importer"
+        ],
+        "capabilities": [],
+        "configuration": {}
+      },
+      "sourceDigest": "sha256:104e4d1c06624c2780ea2cbb3e135cb6c9338fc57c0ed2c6918d535894980361"
+    },
+    {
+      "id": "replay-studio",
+      "manifest": {
+        "contract": 1,
+        "id": "replay-studio",
+        "name": "Replay Studio",
+        "version": "1.0.0",
+        "runtime": "cloudflare-worker",
+        "entry": "worker.mjs",
+        "dataVersion": 1,
+        "routes": [
+          "/replay-studio"
+        ],
+        "capabilities": [],
+        "configuration": {}
+      },
+      "sourceDigest": "sha256:5eede1a4950743310b208107dbcee7ae409478733b81ad87e9fc2660137f2200"
+    },
+    {
+      "id": "receipt-publisher",
+      "manifest": {
+        "contract": 1,
+        "id": "receipt-publisher",
+        "name": "Receipt Publisher",
+        "version": "1.0.0",
+        "runtime": "cloudflare-worker",
+        "entry": "worker.mjs",
+        "dataVersion": 1,
+        "routes": [
+          "/receipt-publisher"
+        ],
+        "capabilities": [],
+        "configuration": {}
+      },
+      "sourceDigest": "sha256:079b8ca4c7b5421d5cec12d0de37f27d6091293155cfe370fd24f8a8bb0e55cc"
+    }
+  ]
+}

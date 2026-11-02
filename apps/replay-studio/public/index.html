@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Agent Black Box — See what your AI agent actually did</title>
+    <meta
+      name="description"
+      content="An evidence-first replay of agent executions. Explore tools, failures, recovery and verification."
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#graph">Skip to execution graph</a>
+    <header class="topbar">
+      <a href="/" class="brand" aria-label="Agent Black Box home"
+        ><span class="mark">▣</span> AGENT <strong>BLACK BOX</strong></a
+      ><span class="tagline">See what your AI agent actually did.</span>
+      <div class="header-actions">
+        <span class="local-badge" id="mode">LOCAL WORKSPACE</span
+        ><button id="import-open">↑ Import receipt</button
+        ><button id="publish-open" class="primary">Share report ↗</button>
+      </div>
+    </header>
+    <main>
+      <section class="run-header">
+        <div>
+          <div class="eyebrow">
+            EXECUTION REPLAY <span class="slash">/</span>
+            <span id="source-kind">SYNTHETIC EXAMPLE</span>
+          </div>
+          <h1 id="title">A failure. A fix. The evidence.</h1>
+          <p id="subtitle">Every action leaves a trail. Follow it.</p>
+        </div>
+        <label class="scenario-label"
+          >Explore a run<select id="scenario">
+            <option value="recovery">Failure → recovery · synthetic</option>
+            <option value="success">Kujo verification · recorded</option>
+          </select></label
+        >
+      </section>
+      <section class="metrics" aria-label="Execution metrics">
+        <div><span>EVENTS</span><strong id="metric-events">—</strong></div>
+        <div><span>TOOL CALLS</span><strong id="metric-tools">—</strong></div>
+        <div>
+          <span>FILES CHANGED</span><strong id="metric-files">—</strong>
+        </div>
+        <div>
+          <span>FAILURES</span
+          ><strong id="metric-failures" class="failure-text">—</strong>
+        </div>
+        <div>
+          <span>PASSED CHECKS</span
+          ><strong id="metric-checks" class="success-text">—</strong>
+        </div>
+        <div><span>DURATION</span><strong id="metric-duration">—</strong></div>
+      </section>
+      <div class="workspace">
+        <section class="graph-panel" aria-labelledby="graph-heading">
+          <div class="panel-heading">
+            <h2 id="graph-heading">
+              Execution graph <span id="event-count" class="muted"></span>
+            </h2>
+            <div class="legend">
+              <span>● Observed</span><span class="failure-text">× Failed</span
+              ><span class="success-text">✓ Passed</span>
+            </div>
+          </div>
+          <div class="graph-surface" id="graph" tabindex="-1">
+            <div
+              id="graph-nodes"
+              class="graph-nodes"
+              role="group"
+              aria-label="Execution events"
+            ></div>
+          </div>
+          <div class="graph-foot">
+            <span
+              ><span class="pulse-dot"></span>
+              <span id="execution-state">Ready to replay</span></span
+            ><span id="graph-window">Evidence, not hidden reasoning</span>
+          </div>
+        </section>
+        <aside class="inspector" aria-labelledby="inspector-heading">
+          <div class="panel-heading">
+            <h2 id="inspector-heading">Event inspector</h2>
+            <span id="inspector-number" class="mono muted">01</span>
+          </div>
+          <div class="inspector-body">
+            <span id="event-type" class="event-chip">REQUEST</span>
+            <h2 id="event-title"></h2>
+            <p id="event-status" class="muted"></p>
+            <dl class="event-meta" id="event-meta"></dl>
+            <div class="evidence-heading">
+              EVIDENCE <span id="evidence-status">SOURCE CLAIM</span>
+            </div>
+            <div id="evidence"></div>
+            <details>
+              <summary>Raw event JSON</summary>
+              <pre id="raw-event"></pre>
+            </details>
+          </div>
+        </aside>
+      </div>
+      <section class="transport" aria-label="Replay controls">
+        <div class="transport-top">
+          <div class="controls">
+            <button id="restart" aria-label="Restart replay">↺</button
+            ><button id="back" aria-label="Step backward">‹</button
+            ><button id="play" class="play" aria-label="Play replay">
+              ▶ <span>Play replay</span></button
+            ><button id="next" aria-label="Step forward">›</button
+            ><select id="speed" aria-label="Playback speed">
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+              <option value="4">4×</option>
+            </select>
+          </div>
+          <div class="position">
+            <strong id="position">01</strong
+            ><span id="position-total"> / 12 events</span
+            ><span class="shortcut">SPACE to play · ← → to step</span>
+          </div>
+        </div>
+        <input
+          id="timeline"
+          type="range"
+          min="0"
+          max="0"
+          value="0"
+          aria-label="Replay timeline"
+        />
+        <div class="timeline-labels">
+          <span>REQUEST</span
+          ><span id="timeline-middle">FAILURE → RECOVERY</span
+          ><span>FINAL EVIDENCE</span>
+        </div>
+      </section>
+      <section class="disclosure">
+        <div>
+          <h2>What this record can tell you</h2>
+          <p id="coverage">
+            Only observed events are shown. No hidden reasoning is exposed.
+          </p>
+          <ul id="gaps"></ul>
+        </div>
+        <div class="unknowns">
+          <span>TOKEN USAGE <strong>Unavailable</strong></span
+          ><span>COST <strong>Unavailable</strong></span
+          ><span>VERIFICATION <strong>Source-reported</strong></span>
+        </div>
+      </section>
+      <footer>
+        <span>Independent apps. Connected evidence.</span>
+        <div class="composition">
+          <span>01 Importer</span><i>→</i><span>02 Replay Studio</span><i>→</i
+          ><span>03 Publisher</span>
+        </div>
+        <p>
+          Built with
+          <a
+            href="https://composer.loftwah.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >App Composer contracts by Loftwah ↗</a
+          >
+          +
+          <a
+            href="https://github.com/kujolang/runledger"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Kujo RunLedger ↗</a
+          >
+        </p>
+      </footer>
+    </main>
+    <div id="message" role="status" aria-live="polite"></div>
+    <dialog id="import-dialog">
+      <form id="import-form">
+        <div class="dialog-heading">
+          <h2>Import an execution</h2>
+          <button type="button" data-close aria-label="Close import">×</button>
+        </div>
+        <p>
+          Canonical blackbox.run/v1 or a runledger/1 envelope. Maximum 1 MiB.
+          Imports remain private.
+        </p>
+        <label
+          >JSON receipt<input
+            type="file"
+            id="file"
+            accept="application/json,.json" /></label
+        ><label
+          >Or paste JSON<textarea
+            id="import-json"
+            rows="9"
+            spellcheck="false"
+          ></textarea></label
+        ><label
+          >Owner token <span class="muted">(hosted instances only)</span
+          ><input id="owner-token" type="password" autocomplete="off"
+        /></label>
+        <p class="warning">
+          Redaction catches common secrets, not every sensitive detail. Review
+          before sharing.
+        </p>
+        <button type="submit" class="primary">Import and replay</button>
+      </form>
+    </dialog>
+    <dialog id="publish-dialog">
+      <form id="publish-form">
+        <div class="dialog-heading">
+          <h2>Review before publishing</h2>
+          <button type="button" data-close aria-label="Close publishing">
+            ×
+          </button>
+        </div>
+        <p>
+          This creates a read-only snapshot accessible to anyone with its URL.
+          All text below will be shared. Redaction is not infallible.
+        </p>
+        <pre id="publish-preview" tabindex="0"></pre>
+        <label class="check"
+          ><input type="checkbox" id="approve" required /> I reviewed this
+          sanitized record and approve public sharing.</label
+        ><button type="submit" class="primary">Publish approved report</button>
+      </form>
+    </dialog>
+    <noscript
+      >This replay requires JavaScript. No imported commands are
+      executed.</noscript
+    >
+  </body>
+</html>

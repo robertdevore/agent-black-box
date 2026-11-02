@@ -1,0 +1,156 @@
+{
+  "schema": "blackbox.run/v1",
+  "id": "recorded-inventory-fix-20261102",
+  "title": "Fix blank SKUs in an inventory import",
+  "source": {
+    "provider": "agent-black-box-recorder",
+    "receiptId": "2026-11-02-codex-reject-blank-inventory-skus-and-normalize-valid-ids-001",
+    "classification": "recorded"
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "request",
+      "label": "Fix inventory CSV validation",
+      "timestamp": "2026-11-02T17:36:53.576Z",
+      "status": "observed",
+      "sourceId": "captured-1",
+      "evidence": {
+        "task": "Reject whitespace-only product SKUs and trim valid SKUs while preserving quantity validation.",
+        "context": "Real execution on a deliberately prepared demo checkout. Seeded defect, not a production incident.",
+        "runledgerReceipt": "2026-11-02-codex-reject-blank-inventory-skus-and-normalize-valid-ids-001"
+      }
+    },
+    {
+      "id": "e2",
+      "type": "tool_call",
+      "label": "Read the CSV importer",
+      "timestamp": "2026-11-02T17:36:53.577Z",
+      "status": "observed",
+      "sourceId": "captured-2",
+      "evidence": {
+        "tool": "read_file",
+        "path": "inventory.mjs"
+      },
+      "callId": "read-importer"
+    },
+    {
+      "id": "e3",
+      "type": "tool_result",
+      "label": "Inspect current validation",
+      "timestamp": "2026-11-02T17:36:53.577Z",
+      "status": "observed",
+      "sourceId": "captured-3",
+      "evidence": {
+        "path": "inventory.mjs",
+        "source": "export function parseInventory(csv) {\n  return csv.trim().split(\"\\n\").slice(1).map((line) => {\n    const [sku, quantityText] = line.split(\",\");\n    if (!sku) throw new Error(\"SKU is required\");\n    const quantity = Number(quantityText);\n    if (!Number.isInteger(quantity) || quantity < 0) throw new Error(\"Invalid quantity\");\n    return { sku, quantity };\n  });\n}\n"
+      },
+      "callId": "read-importer"
+    },
+    {
+      "id": "e4",
+      "type": "test",
+      "label": "SKU validation tests fail",
+      "timestamp": "2026-11-02T17:36:54.068Z",
+      "status": "fail",
+      "sourceId": "captured-4",
+      "evidence": {
+        "command": "node --test inventory.test.mjs",
+        "stdout": "\u2714 imports a valid inventory row (2.288712ms)\n\u2716 rejects a whitespace-only SKU (2.653982ms)\n\u2716 normalizes surrounding SKU whitespace (2.271607ms)\n\u2714 rejects negative quantities (0.523726ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 2\n\u2139 fail 2\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 151.790197\n\n\u2716 failing tests:\n\ntest at inventory.test.mjs:7:1\n\u2716 rejects a whitespace-only SKU (2.653982ms)\n  AssertionError [ERR_ASSERTION]: Missing expected exception.\n      at TestContext.<anonymous> (file:///private[demo-checkout]/inventory.test.mjs:8:10)\n      at Test.runInAsyncScope (node:async_hooks:226:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: /SKU is required/,\n    operator: 'throws',\n    diff: 'simple'\n  }\n\ntest at inventory.test.mjs:10:1\n\u2716 normalizes surrounding SKU whitespace (2.271607ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [\n      {\n        quantity: 8,\n  +     sku: ' COFFEE-01 '\n  -     sku: 'COFFEE-01'\n      }\n    ]\n  \n      at TestContext.<anonymous> (file:///private[demo-checkout]/inventory.test.mjs:11:10)\n      at Test.runInAsyncScope (node:async_hooks:226:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: [ { sku: ' COFFEE-01 ', quantity: 8 } ],\n    expected: [ { sku: 'COFFEE-01', quantity: 8 } ],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n",
+        "stderr": "",
+        "exitCode": 1
+      }
+    },
+    {
+      "id": "e5",
+      "type": "tool_call",
+      "label": "Inspect the regression cases",
+      "timestamp": "2026-11-02T17:36:54.068Z",
+      "status": "observed",
+      "sourceId": "captured-5",
+      "evidence": {
+        "tool": "read_file",
+        "path": "inventory.test.mjs"
+      },
+      "callId": "read-tests"
+    },
+    {
+      "id": "e6",
+      "type": "tool_result",
+      "label": "Blank and padded SKU cases",
+      "timestamp": "2026-11-02T17:36:54.069Z",
+      "status": "observed",
+      "sourceId": "captured-6",
+      "evidence": {
+        "path": "inventory.test.mjs",
+        "source": "import test from \"node:test\";\nimport assert from \"node:assert/strict\";\nimport { parseInventory } from \"./inventory.mjs\";\ntest(\"imports a valid inventory row\", () => {\n  assert.deepEqual(parseInventory(\"sku,quantity\\nCOFFEE-01,8\"), [{sku:\"COFFEE-01\",quantity:8}]);\n});\ntest(\"rejects a whitespace-only SKU\", () => {\n  assert.throws(() => parseInventory(\"sku,quantity\\n   ,8\"), /SKU is required/);\n});\ntest(\"normalizes surrounding SKU whitespace\", () => {\n  assert.deepEqual(parseInventory(\"sku,quantity\\n COFFEE-01 ,8\"), [{sku:\"COFFEE-01\",quantity:8}]);\n});\ntest(\"rejects negative quantities\", () => {\n  assert.throws(() => parseInventory(\"sku,quantity\\nCOFFEE-01,-1\"), /Invalid quantity/);\n});\n"
+      },
+      "callId": "read-tests"
+    },
+    {
+      "id": "e7",
+      "type": "retry",
+      "label": "Normalize SKU before checking",
+      "timestamp": "2026-11-02T17:36:54.069Z",
+      "status": "observed",
+      "sourceId": "captured-7",
+      "evidence": {
+        "action": "Apply trim before the empty-value check, then rerun the same tests."
+      },
+      "retryOf": "e4"
+    },
+    {
+      "id": "e8",
+      "type": "file",
+      "label": "Trim the incoming SKU",
+      "timestamp": "2026-11-02T17:36:54.090Z",
+      "status": "observed",
+      "sourceId": "captured-8",
+      "evidence": {
+        "path": "inventory.mjs",
+        "diff": "diff --git a/inventory.mjs b/inventory.mjs\nindex 23962ef..f02e157 100644\n--- a/inventory.mjs\n+++ b/inventory.mjs\n@@ -1,6 +1,7 @@\n export function parseInventory(csv) {\n   return csv.trim().split(\"\\n\").slice(1).map((line) => {\n-    const [sku, quantityText] = line.split(\",\");\n+    const [rawSku, quantityText] = line.split(\",\");\n+    const sku = rawSku.trim();\n     if (!sku) throw new Error(\"SKU is required\");\n     const quantity = Number(quantityText);\n     if (!Number.isInteger(quantity) || quantity < 0) throw new Error(\"Invalid quantity\");\n"
+      }
+    },
+    {
+      "id": "e9",
+      "type": "test",
+      "label": "All four tests pass",
+      "timestamp": "2026-11-02T17:36:54.573Z",
+      "status": "pass",
+      "sourceId": "captured-9",
+      "evidence": {
+        "command": "node --test inventory.test.mjs",
+        "stdout": "\u2714 imports a valid inventory row (2.247861ms)\n\u2714 rejects a whitespace-only SKU (0.59936ms)\n\u2714 normalizes surrounding SKU whitespace (0.240819ms)\n\u2714 rejects negative quantities (1.228775ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 4\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 152.375301\n",
+        "stderr": "",
+        "exitCode": 0
+      }
+    },
+    {
+      "id": "e10",
+      "type": "verification",
+      "label": "JavaScript syntax verified",
+      "timestamp": "2026-11-02T17:36:54.782Z",
+      "status": "pass",
+      "sourceId": "captured-10",
+      "evidence": {
+        "command": "node --check inventory.mjs",
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 0
+      }
+    },
+    {
+      "id": "e11",
+      "type": "completion",
+      "label": "Fix verified with evidence",
+      "timestamp": "2026-11-02T17:36:55.147Z",
+      "status": "pass",
+      "sourceId": "captured-11",
+      "evidence": {
+        "summary": "Whitespace-only SKUs rejected; valid SKU whitespace trimmed. Four regression tests and syntax check passed.",
+        "limits": "Small CSV parser demo, not a production-ready CSV library. Tests cover stated cases only.",
+        "runledgerReceipt": "2026-11-02-codex-reject-blank-inventory-skus-and-normalize-valid-ids-001"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source": "04-failure.mp3",
+  "measurement": {
+    "input_i": "-24.95",
+    "input_tp": "-1.60",
+    "input_lra": "1.40",
+    "input_thresh": "-35.69",
+    "output_i": "-16.99",
+    "output_tp": "-1.50",
+    "output_lra": "2.00",
+    "output_thresh": "-27.62",
+    "normalization_type": "dynamic",
+    "target_offset": "0.99"
+  },
+  "filter": "loudnorm=I=-16:TP=-1.5:LRA=7:linear=true:measured_I=-24.95:measured_TP=-1.60:measured_LRA=1.40:measured_thresh=-35.69:offset=0.99"
+}

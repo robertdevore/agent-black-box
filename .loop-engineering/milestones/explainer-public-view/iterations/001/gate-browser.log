@@ -1,0 +1,24 @@
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> agent-black-box@0.1.0 test:e2e
+> playwright test
+
+[WebServer] npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown env config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+[WebServer] (node:64896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:64904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/replay.spec.mjs:5:1 › full import, failure inspection, recovery replay and approved public report (5.4s)
+  ✓  2 tests/browser/replay.spec.mjs:65:1 › keyboard, slider, playback and reduced-motion preferences (1.4s)
+  ✓  3 tests/browser/replay.spec.mjs:90:1 › desktop and phone accessibility, layout and screenshots (5.5s)
+  ✓  4 tests/browser/replay.spec.mjs:120:1 › recorded example and safe text rendering (990ms)
+  ✓  5 tests/browser/replay.spec.mjs:138:1 › graph row turns connect consecutive events and large traces stay bounded (2.2s)
+  ✓  6 tests/browser/replay.spec.mjs:176:1 › recorded inventory run keeps event inspection usable (1.8s)
+
+  6 passed (23.1s)

@@ -1,0 +1,143 @@
+1
+00:00:00,350 --> 00:00:05,870
+The agent says the bug is fixed. Let's check. This is Agent Black Box. It turns an
+
+2
+00:00:05,870 --> 00:00:10,430
+execution record into a replay, so you can follow the work instead of digging through a
+
+3
+00:00:10,430 --> 00:00:15,790
+wall of logs. We'll track down a problem in an inventory importer, inspect the fix, and
+
+4
+00:00:15,790 --> 00:00:16,670
+share the result.
+
+5
+00:00:17,870 --> 00:00:23,870
+We built this around App Composer, by Loftwah. Its approach is useful here: give each app a
+
+6
+00:00:23,870 --> 00:00:29,950
+clear job, then connect them. Our importer checks and stores the execution record. Replay
+
+7
+00:00:29,950 --> 00:00:35,510
+Studio gives us this view. The publisher creates the report we can share. Each app keeps
+
+8
+00:00:35,510 --> 00:00:38,030
+its own code and configuration.
+
+9
+00:00:39,150 --> 00:00:44,750
+First, drop in the execution record. The importer checks its format and removes common
+
+10
+00:00:44,750 --> 00:00:50,670
+secret patterns before saving it. Now the run is on the graph. Click a step, drag the
+
+11
+00:00:50,670 --> 00:00:54,990
+timeline, or press play. The details follow your selection.
+
+12
+00:00:56,110 --> 00:01:01,470
+Here's where things went wrong. The importer accepted a product code made entirely of
+
+13
+00:01:01,470 --> 00:01:08,270
+spaces. It also left spaces around valid codes. Two tests caught those problems. Open the
+
+14
+00:01:08,270 --> 00:01:12,910
+failed step and you can read the command and its output. We're looking at what actually
+
+15
+00:01:12,910 --> 00:01:15,150
+happened, right where it happened.
+
+16
+00:01:16,270 --> 00:01:21,950
+The next attempt leads us to the patch. It's a small change: trim the product code before
+
+17
+00:01:21,950 --> 00:01:28,190
+checking whether it's empty. The diff shows exactly what changed. That connection matters.
+
+18
+00:01:28,190 --> 00:01:33,390
+We can move from the failed test to the edit that addresses it, without losing our place.
+
+19
+00:01:34,510 --> 00:01:40,750
+Run the tests again, and all four pass. The syntax check passes too. The failed attempt is
+
+20
+00:01:40,750 --> 00:01:46,390
+still here, so you can see the whole story. Kujo Run Ledger keeps the run receipt, and
+
+21
+00:01:46,390 --> 00:01:49,630
+Black Box gives us a way to explore the captured work.
+
+22
+00:01:50,750 --> 00:01:56,350
+When you're ready to show someone else, open Share report. Review what's included, approve
+
+23
+00:01:56,350 --> 00:02:01,870
+it, and open the read-only copy. They get the same replay and evidence, without access to
+
+24
+00:02:01,870 --> 00:02:07,150
+your private records. That makes it useful for a code review, a handoff, or explaining a
+
+25
+00:02:07,150 --> 00:02:08,510
+fix to a teammate.
+
+26
+00:02:09,630 --> 00:02:15,390
+Here's where App Composer does more than lend us a layout. Each app has a manifest.
+
+27
+00:02:15,390 --> 00:02:19,990
+Composer's own validators check that the apps can fit together, and its promotion guard
+
+28
+00:02:19,990 --> 00:02:25,790
+checks a proposed update. Worker service bindings carry requests between them. The importer
+
+29
+00:02:25,790 --> 00:02:29,790
+owns private receipts; the publisher owns approved copies.
+
+30
+00:02:30,910 --> 00:02:36,510
+We also tested the boundary that matters: update Replay Studio on its own, then read the
+
+31
+00:02:36,510 --> 00:02:42,350
+existing receipt and shared report. Both still work. This check runs the Workers with real
+
+32
+00:02:42,350 --> 00:02:48,190
+service bindings and separate databases. Our local adapter applies Composer's contracts;
+
+33
+00:02:48,190 --> 00:02:51,790
+registration in its hosted stack editor is a separate step.
+
+34
+00:02:52,910 --> 00:02:58,750
+That's the combination: App Composer keeps the apps independent, and Agent Black Box makes
+
+35
+00:02:58,750 --> 00:03:04,670
+their execution evidence easy to follow. Start at the graph, pause at the failure, read the
+
+36
+00:03:04,670 --> 00:03:09,310
+patch, and check the result. See what your AI agent actually did.

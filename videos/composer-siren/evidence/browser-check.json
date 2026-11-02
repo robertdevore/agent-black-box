@@ -1,0 +1,9 @@
+{
+  "chapterCount": 10,
+  "pageErrors": [],
+  "graphTimelineAssertionsPassed": true,
+  "anonymousReportPassed": true,
+  "composerWebsiteRecorded": false,
+  "composerShowcase": "repository-backed architecture, manifest and verification views",
+  "sourceWalkthrough": "actual manifests and executed test output"
+}
